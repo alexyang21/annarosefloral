@@ -46,7 +46,7 @@ class FlowerArrangementsController < ApplicationController
   def update
     respond_to do |format|
       if @flower_arrangement.update(flower_arrangement_params)
-        format.html { redirect_to @flower_arrangement, notice: 'Flower arrangement was successfully updated.' }
+        format.html { redirect_to event_url(@flower_arrangement.event_id), notice: 'Flower arrangement was successfully updated.' }
         format.json { render :show, status: :ok, location: @flower_arrangement }
       else
         format.html { render :edit }
