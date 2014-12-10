@@ -1,0 +1,12 @@
+<p>
+  <strong>Quantity:</strong>
+  <%= @rental_item.quantity %>
+</p>
+
+<p>
+  <strong>Rental:</strong>
+  <%= @rental_item.rental.name %>
+</p>
+
+<%= link_to 'Edit', edit_rental_item_path(@rental_item) %> |
+<%= link_to 'Back', event_path(@rental_item.event_id) %>

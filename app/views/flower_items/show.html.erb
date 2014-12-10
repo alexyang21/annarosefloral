@@ -1,0 +1,7 @@
+<p>
+  <strong>Quantity:</strong>
+  <%= @flower_item.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_flower_arrangement_flower_item_path(@flower_arrangement, @flower_item) %> |
+<%= link_to 'Back', flower_arrangement_flower_items_path(@flower_arrangement) %>

@@ -1,0 +1,27 @@
+<%= form_for([@flower_arrangement, @flower_item]) do |f| %>
+  <% if @flower_item.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@flower_item.errors.count, "error") %> prohibited this flower_item from being saved:</h4>
+
+      <ul>
+      <% @flower_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label "Flower Type" %>
+    <%= f.collection_select :flower_id, Flower.order("name ASC"), :id, :name, include_blank: true, 
+        class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

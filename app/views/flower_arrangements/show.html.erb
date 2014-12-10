@@ -1,0 +1,52 @@
+<h1 class="center"><%= @flower_arrangement.name %></h1>
+
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>FLOWER</th>
+      <th class="center">COST/UNIT</th>
+      <th class="center">QUANTITY</th>
+      <th class="center">TOTAL COST</th>
+      <th class="center"></th>
+    </tr>
+  </thead>
+    
+  <tbody>
+    <% @flower_items.each do |flower_item| %>
+      <tr>
+        <td><%= flower_item.flower.name %></td>
+        <td class="center"><%= number_to_currency(flower_item.flower.cost) %></td>
+        <td class="center"><%= flower_item.quantity %></td>
+        <td class="center"><%= number_to_currency(flower_item.flower.cost * flower_item.quantity) %></td>
+        <td class="center">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              Action <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><%= link_to 'Show', flower_item_path(flower_item) %></li>
+              <li><%= link_to 'Edit', edit_flower_item_path(flower_item) %></li>
+              <li><%= link_to 'Destroy', flower_item_path(flower_item), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    
+    <!-- Display arrangement cost -->
+    <tr class="active">
+      <td><strong>Arrangement Cost</strong></td>
+      <td></td>
+      <td></td>
+      <td class="center"><strong><%= number_to_currency(@flower_arrangement.cost) %></strong></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to "Add Flower Item", new_flower_arrangement_flower_item_path(@flower_arrangement), class: "btn btn-primary" %>
+
+<br>
+
+<%= link_to 'Edit', edit_flower_arrangement_path(@flower_arrangement) %> |
+<%= link_to 'Back', event_path(@flower_arrangement.event_id) %>
